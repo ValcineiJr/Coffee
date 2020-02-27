@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
-import { View, Image, ImageBackground, Text, StatusBar } from 'react-native';
+import { View, Image, ImageBackground, Text, StatusBar, TouchableOpacity } from 'react-native';
 import BG from '../../assets/img/header.jpg';
 import coffee from '../../assets/img/coffee.jpg';
+import rosca from '../../assets/img/rosca.jpg';
+import leite from '../../assets/img/leite.jpg';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
 
@@ -35,37 +37,79 @@ export default function Home() {
     {nome:'Bolos', icon:'birthday-cake'}
   ]);
 
+  const [products, setProducts] = useState([
+    {category:'Bebidas', name: 'Café', img:coffee, price: '15,00', description: 'Tome um café gostoso do jeito que quiser', espcs:['Quente', 'Gelado'],},
+
+    {category:'Bebidas', name: 'Leite', img:leite, price: '11,00', description: 'Compre um leite para acompanhar seu café', espcs:['Morno', 'Gelado'],},
+
+    {category:'Donuts', name: 'Rosca', img:rosca, price: '16,00', description: 'Um delicioso doce de dar água na boca', espcs:['Doce'],}
+  ]);
+
   const SelectedStyle = {
-    fontSize: 30, 
+    fontSize: 26, 
     color: '#28C6DB', 
     fontWeight: 'bold',    
     marginLeft: 8
   }
   const DefaultStyle = {
-    fontSize: 20, 
+    fontSize: 17, 
     color: '#C4C4C4',
     marginLeft: 8
-  }
-
+  }  
   
-  
-  function SelectActive(category) {
-    setActive(category.nome);
-  }
 
   function ListCategories(){
+    if(categories.length <= 0){
+      return <Text>Sem Itens</Text>
+    }else
    return (
-    categories.map(category => (       
-       <Item key={category.nome} cor={(active == category.nome) ? '#28c6db' : '#c4c4c4'}>
-       <Icon name={category.icon} size={(active == category.nome) ? 30 : 20} color={(active == category.nome) ? '#28c6db' : '#c4c4c4'} />
+    categories.map(category => (     
+      <TouchableOpacity onPress={() => setActive(category.nome)}  activeOpacity={.7} key={category.nome}>
+       <Item  cor={(active == category.nome) ? '#28c6db' : '#c4c4c4'}>
+       <Icon name={category.icon} size={(active == category.nome) ? 20 : 10} color={(active == category.nome) ? '#28c6db' : '#c4c4c4'} />
           <ItemName           
-          onPress={() => SelectActive(category)}                        
+                                 
           style={(active == category.nome) ? SelectedStyle : DefaultStyle}>          
           {category.nome}
           </ItemName>
       </Item>
+      </TouchableOpacity>  
      ))
    )
+  }
+
+  function ListProducts(){    
+    if(categories.length <= 0){
+      return <Text>Adicione alguns produtos</Text>
+    }else{
+      return (
+        products.map(product =>(
+         <View key={product.price}>          
+           {(product.category == active) ?
+            
+            <Product>
+            <ImgProduct>
+              <Image style={{width:'100%', height: '100%'}} source={product.img} />
+            </ImgProduct>
+
+            <InfoProduct>
+              <NameProduct>{product.name}</NameProduct>
+              <DescriptionProduct>{product.description}</DescriptionProduct>
+              <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
+                {product.espcs.map((espc, i )=>(
+                  <OptionsProduct key={i}><Text style={{textAlign: 'center',fontSize: 11, color: '#888', fontWeight: 'bold'}}>{espc}</Text></OptionsProduct>
+                ))}
+              </View>
+            </InfoProduct>
+
+            <AddButton><Text>+</Text></AddButton>
+            
+            </Product>
+            :<></>}
+         </View>
+        ))
+      )
+    }
   }
 
   return (
@@ -77,146 +121,12 @@ export default function Home() {
         </BgImage>
       </Header>
 
-      <NavTabs>
+        <NavTabs>
+          <ListCategories />
+        </NavTabs>  
 
-      <ListCategories />
-
-      </NavTabs>  
-
-    <ProductList >      
-        <Product>
-          <ImgProduct>
-            <Image style={{flex: 1}} source={coffee} />
-          </ImgProduct>
-
-          <InfoProduct>
-            <NameProduct>Café</NameProduct>
-            <DescriptionProduct>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</DescriptionProduct>
-            <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
-            <OptionsProduct><Text style={{textAlign: 'center',fontSize: 10, color: '#C4C4C4'}}>Quente</Text></OptionsProduct>
-            <OptionsProduct><Text style={{textAlign: 'center',fontSize: 10, color: '#C4C4C4'}}>Frio</Text></OptionsProduct>
-            <OptionsProduct><Text style={{textAlign: 'center',fontSize: 10, color: '#C4C4C4'}}>Morno</Text></OptionsProduct>
-            <OptionsProduct><Text style={{textAlign: 'center',fontSize: 10, color: '#C4C4C4'}}>Morno</Text></OptionsProduct>
-            <OptionsProduct><Text style={{textAlign: 'center',fontSize: 10, color: '#C4C4C4'}}>Morno</Text></OptionsProduct>
-            </View>
-          </InfoProduct>
-
-          <AddButton><Text>+</Text></AddButton>
-        </Product>       
-        <Product>
-          <ImgProduct>
-            <Image style={{flex: 1}} source={coffee} />
-          </ImgProduct>
-
-          <InfoProduct>
-            <NameProduct>Café</NameProduct>
-            <DescriptionProduct>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</DescriptionProduct>
-            <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
-            <OptionsProduct><Text style={{textAlign: 'center',fontSize: 10, color: '#C4C4C4'}}>Quente</Text></OptionsProduct>
-            <OptionsProduct><Text style={{textAlign: 'center',fontSize: 10, color: '#C4C4C4'}}>Frio</Text></OptionsProduct>
-            <OptionsProduct><Text style={{textAlign: 'center',fontSize: 10, color: '#C4C4C4'}}>Morno</Text></OptionsProduct>
-            <OptionsProduct><Text style={{textAlign: 'center',fontSize: 10, color: '#C4C4C4'}}>Morno</Text></OptionsProduct>
-            <OptionsProduct><Text style={{textAlign: 'center',fontSize: 10, color: '#C4C4C4'}}>Morno</Text></OptionsProduct>
-            </View>
-          </InfoProduct>
-
-          <AddButton><Text>+</Text></AddButton>
-        </Product>       
-        <Product>
-          <ImgProduct>
-            <Image style={{flex: 1}} source={coffee} />
-          </ImgProduct>
-
-          <InfoProduct>
-            <NameProduct>Café</NameProduct>
-            <DescriptionProduct>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</DescriptionProduct>
-            <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
-            <OptionsProduct><Text style={{textAlign: 'center',fontSize: 10, color: '#C4C4C4'}}>Quente</Text></OptionsProduct>
-            <OptionsProduct><Text style={{textAlign: 'center',fontSize: 10, color: '#C4C4C4'}}>Frio</Text></OptionsProduct>
-            <OptionsProduct><Text style={{textAlign: 'center',fontSize: 10, color: '#C4C4C4'}}>Morno</Text></OptionsProduct>
-            <OptionsProduct><Text style={{textAlign: 'center',fontSize: 10, color: '#C4C4C4'}}>Morno</Text></OptionsProduct>
-            <OptionsProduct><Text style={{textAlign: 'center',fontSize: 10, color: '#C4C4C4'}}>Morno</Text></OptionsProduct>
-            </View>
-          </InfoProduct>
-
-          <AddButton><Text>+</Text></AddButton>
-        </Product>       
-        <Product>
-          <ImgProduct>
-            <Image style={{flex: 1}} source={coffee} />
-          </ImgProduct>
-
-          <InfoProduct>
-            <NameProduct>Café</NameProduct>
-            <DescriptionProduct>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</DescriptionProduct>
-            <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
-            <OptionsProduct><Text style={{textAlign: 'center',fontSize: 10, color: '#C4C4C4'}}>Quente</Text></OptionsProduct>
-            <OptionsProduct><Text style={{textAlign: 'center',fontSize: 10, color: '#C4C4C4'}}>Frio</Text></OptionsProduct>
-            <OptionsProduct><Text style={{textAlign: 'center',fontSize: 10, color: '#C4C4C4'}}>Morno</Text></OptionsProduct>
-            <OptionsProduct><Text style={{textAlign: 'center',fontSize: 10, color: '#C4C4C4'}}>Morno</Text></OptionsProduct>
-            <OptionsProduct><Text style={{textAlign: 'center',fontSize: 10, color: '#C4C4C4'}}>Morno</Text></OptionsProduct>
-            </View>
-          </InfoProduct>
-
-          <AddButton><Text>+</Text></AddButton>
-        </Product>       
-        <Product>
-          <ImgProduct>
-            <Image style={{flex: 1}} source={coffee} />
-          </ImgProduct>
-
-          <InfoProduct>
-            <NameProduct>Café</NameProduct>
-            <DescriptionProduct>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</DescriptionProduct>
-            <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
-            <OptionsProduct><Text style={{textAlign: 'center',fontSize: 10, color: '#C4C4C4'}}>Quente</Text></OptionsProduct>
-            <OptionsProduct><Text style={{textAlign: 'center',fontSize: 10, color: '#C4C4C4'}}>Frio</Text></OptionsProduct>
-            <OptionsProduct><Text style={{textAlign: 'center',fontSize: 10, color: '#C4C4C4'}}>Morno</Text></OptionsProduct>
-            <OptionsProduct><Text style={{textAlign: 'center',fontSize: 10, color: '#C4C4C4'}}>Morno</Text></OptionsProduct>
-            <OptionsProduct><Text style={{textAlign: 'center',fontSize: 10, color: '#C4C4C4'}}>Morno</Text></OptionsProduct>
-            </View>
-          </InfoProduct>
-
-          <AddButton><Text>+</Text></AddButton>
-        </Product>       
-        <Product>
-          <ImgProduct>
-            <Image style={{flex: 1}} source={coffee} />
-          </ImgProduct>
-
-          <InfoProduct>
-            <NameProduct>Café</NameProduct>
-            <DescriptionProduct>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</DescriptionProduct>
-            <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
-            <OptionsProduct><Text style={{textAlign: 'center',fontSize: 10, color: '#C4C4C4'}}>Quente</Text></OptionsProduct>
-            <OptionsProduct><Text style={{textAlign: 'center',fontSize: 10, color: '#C4C4C4'}}>Frio</Text></OptionsProduct>
-            <OptionsProduct><Text style={{textAlign: 'center',fontSize: 10, color: '#C4C4C4'}}>Morno</Text></OptionsProduct>
-            <OptionsProduct><Text style={{textAlign: 'center',fontSize: 10, color: '#C4C4C4'}}>Morno</Text></OptionsProduct>
-            <OptionsProduct><Text style={{textAlign: 'center',fontSize: 10, color: '#C4C4C4'}}>Morno</Text></OptionsProduct>
-            </View>
-          </InfoProduct>
-
-          <AddButton><Text>+</Text></AddButton>
-        </Product>       
-        <Product>
-          <ImgProduct>
-            <Image style={{flex: 1}} source={coffee} />
-          </ImgProduct>
-
-          <InfoProduct>
-            <NameProduct>Café</NameProduct>
-            <DescriptionProduct>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</DescriptionProduct>
-            <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
-            <OptionsProduct><Text style={{textAlign: 'center',fontSize: 10, color: '#C4C4C4'}}>Quente</Text></OptionsProduct>
-            <OptionsProduct><Text style={{textAlign: 'center',fontSize: 10, color: '#C4C4C4'}}>Frio</Text></OptionsProduct>
-            <OptionsProduct><Text style={{textAlign: 'center',fontSize: 10, color: '#C4C4C4'}}>Morno</Text></OptionsProduct>
-            <OptionsProduct><Text style={{textAlign: 'center',fontSize: 10, color: '#C4C4C4'}}>Morno</Text></OptionsProduct>
-            <OptionsProduct><Text style={{textAlign: 'center',fontSize: 10, color: '#C4C4C4'}}>Morno</Text></OptionsProduct>
-            </View>
-          </InfoProduct>
-
-          <AddButton><Text>+</Text></AddButton>
-        </Product>       
+    <ProductList >    
+          <ListProducts />
     </ProductList>
 
     </Container>

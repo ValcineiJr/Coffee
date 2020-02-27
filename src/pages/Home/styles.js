@@ -6,7 +6,7 @@ export const Container = styled.View`
 `;
 
 export const Header = styled.View`
-  height:260px; 
+  height:211px; 
 `;
 export const BgImage = styled.ImageBackground`
   width:100%;
@@ -18,7 +18,7 @@ export const BgImage = styled.ImageBackground`
 export const Message = styled.View`
   background:#fff;
   height: 42px;
-  min-width:220px;
+  min-width:230px;
   border-radius: 19px;
   padding:22px 8px;
   justify-content:center;
@@ -47,7 +47,7 @@ export const NavTabs = styled.ScrollView.attrs({
   }
 })`
 background:#fafafa;
-min-height:100px;
+max-height:84px;
 `;
 
 
@@ -55,6 +55,7 @@ export const Item = styled.View`
   background:#fafafa;
   justify-content:center;
   align-items: center;
+  height:100%;
   min-width:200px;
   border-bottom-color:${props => props.cor};
   border-bottom-width:10px;
@@ -77,16 +78,18 @@ export const Product = styled.View`
  background: rgba(196, 196, 196, 0.4);
  width: 339px;
  min-height: 70px;
- margin-top:50px;
+ margin-top:15px;
  flex-direction: row;
  padding:10px;
+ border-radius:5px;
 `;
 
 export const ImgProduct = styled.View`
- 
+ flex:1;
+ max-height:100px;
 `;
 export const InfoProduct = styled.View`
-  flex:1;
+  flex:2;
   margin-left:15px;
 `;
 
@@ -112,7 +115,7 @@ export const AddButton = styled.TouchableOpacity`
   border-radius: 28px;
   align-items: center;
   justify-content: center;
-  margin-top:20px;
+  margin-top:30px;
 `;
 
 
