@@ -47,7 +47,7 @@ export const NavTabs = styled.ScrollView.attrs({
   }
 })`
 background:#fafafa;
-max-height:100px;
+min-height:100px;
 `;
 
 
@@ -63,6 +63,56 @@ export const Item = styled.View`
 
 export const ItemName = styled.Text`
   
+`;
+
+export const ProductList = styled.ScrollView.attrs({
+  contentContainerStyle:{
+    
+    alignItems: 'center'
+  }
+})`
+`;
+
+export const Product = styled.View`
+ background: rgba(196, 196, 196, 0.4);
+ width: 339px;
+ min-height: 70px;
+ margin-top:50px;
+ flex-direction: row;
+ padding:10px;
+`;
+
+export const ImgProduct = styled.View`
+ 
+`;
+export const InfoProduct = styled.View`
+  flex:1;
+  margin-left:15px;
+`;
+
+export const NameProduct = styled.Text`
+  font-weight:bold;
+`;
+export const DescriptionProduct = styled.Text`
+ 
+`;
+export const OptionsProduct = styled.TouchableOpacity`
+  background: #FFFFFF;
+  border-radius: 5px;
+  width:60px;
+  padding:3px;
+  margin-top:5px;
+  margin-right:5px;
+`;
+
+export const AddButton = styled.TouchableOpacity`
+  width: 40px;
+  height: 40px;
+  background: #28C6DB;
+  border-radius: 28px;
+  align-items: center;
+  justify-content: center;
+  margin-top:20px;
 `;
 
 
