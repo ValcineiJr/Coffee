@@ -16,12 +16,13 @@ import {
  } from './styles';
 
 export default function Home() {
-  const [active, setActive] = useState(false);
-  const [categories, setCategories] = useState([
-    {nome:'Bebidas', icon: 'glass-martini', active: true},
-    {nome:'Donuts', icon:'bread-slice', active: false},
-    {nome:'Sobremesas', icon:'ice-cream', active: false},
-    {nome:'Bolos', icon:'birthday-cake', active: false}
+  const [active, setActive] = useState(undefined);
+
+  const [categories] = useState([
+    {nome:'Bebidas', icon: 'glass-martini'},
+    {nome:'Donuts', icon:'bread-slice'},
+    {nome:'Sobremesas', icon:'ice-cream'},
+    {nome:'Bolos', icon:'birthday-cake'}
   ]);
 
   const SelectedStyle = {
@@ -39,18 +40,17 @@ export default function Home() {
   
   
   function SelectActive(category) {
-    setCategories(...[categories])
-    alert(category.active);
+    setActive(category.nome);
   }
+
   function ListCategories(){
    return (
-    categories.map(category => (
-       
-       <Item key={category.nome} cor={'#c4c4c4'}>
-       <Icon name={category.icon} size={20} color={'#c4c4c4'} />
-          <ItemName 
+    categories.map(category => (       
+       <Item key={category.nome} cor={(active == category.nome) ? '#28c6db' : '#c4c4c4'}>
+       <Icon name={category.icon} size={(active == category.nome) ? 30 : 20} color={(active == category.nome) ? '#28c6db' : '#c4c4c4'} />
+          <ItemName           
           onPress={() => SelectActive(category)}                        
-          style={DefaultStyle}> 
+          style={(active == category.nome) ? SelectedStyle : DefaultStyle}>          
           {category.nome}
           </ItemName>
       </Item>
