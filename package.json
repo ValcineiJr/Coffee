@@ -20,5 +20,10 @@
     "@babel/core": "^7.0.0",
     "babel-preset-expo": "~8.0.0"
   },
-  "private": true
+  "private": true,
+  "name": "cafeteria",
+  "version": "1.0.0",
+  "repository": "https://github.com/ValcineiJr/CoffeeBreak.git",
+  "author": "Valcinei Jr <hakjog@gmail.com>",
+  "license": "MIT"
 }
