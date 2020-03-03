@@ -3,10 +3,17 @@ import { View, Image,TouchableWithoutFeedback, Text } from 'react-native';
 
 import { 
   Container,
-  ListItens
- } from './styles';
+  ListItens,
+  Filter,
+  InputSearch,
+  FilterButton
+, } from './styles';
 import Notes from '../../assets/img/note.png'
 import coffee from '../../assets/img/coffee.jpg';
+import doce from '../../assets/img/rosca.jpg';
+import settings from '../../assets/img/settings.png';
+
+import Products from '../../components/Product';
 
 export default function Table({ navigation, route }) {
 
@@ -14,30 +21,12 @@ export default function Table({ navigation, route }) {
   const [categories, setCategories] = useState([
     {
       id:1,
+      img:coffee,
       nome:'Bebidas Quentes'
-    },
-    {
+    },{
       id:2,
+      img:doce,
       nome:'Doces'
-    },
-    {
-      id:3,
-      nome:'Bebidas Geladas'
-    }, {
-      id:4,
-      nome:'Bebidas Geladas'
-    }, {
-      id:5,
-      nome:'Bebidas Geladas'
-    }, {
-      id:6,
-      nome:'Bebidas Geladas'
-    }, {
-      id:7,
-      nome:'Bebidas Geladas'
-    }, {
-      id:8,
-      nome:'Bebidas Geladas'
     }
   ]);
 
@@ -70,12 +59,12 @@ export default function Table({ navigation, route }) {
       return(
         <View  style={{height: 83,flexDirection:'row', justifyContent:'center', alignItems: 'center'}}>
           {categories.map(category => (
-          <View style={{marginRight:10}} key={category.id}>
+          <View style={{marginLeft:10}} key={category.id}>
           <TouchableWithoutFeedback onPress={() => {alert("Abrir Menu")}}>
-             <Image source={coffee} style={{marginLeft:15,width:31, height:31, borderRadius:15}} />
+             <Image source={category.img} style={{marginLeft:15,width:31, height:31, borderRadius:15}} />
          </TouchableWithoutFeedback>
          <View style={{width:50,height:26, marginLeft:5, alignItems:'center'}}>
-         <Text styyle={{fontSize:11, fontWeight: 'light'}}>{category.nome}</Text> 
+         <Text styyle={{fontSize:11, fontWeight: 'light', color: '#494545'}}>{category.nome}</Text> 
          </View>              
          </View>
         ))}
@@ -90,6 +79,19 @@ export default function Table({ navigation, route }) {
       <ListItens>
           <ShowCategories />  
       </ListItens>
+      <Filter>
+        <InputSearch
+          placeholder="Buscar Produto"
+        />
+        <View style={{paddingHorizontal:5}}>
+        <FilterButton onPress={() => {alert("Filtrar Itens")}}>
+          <Image source={settings} />
+        </FilterButton>
+        </View>
+      </Filter>
+      <ProductList>
+
+      </ProductList>
     </Container>
   );
 }
