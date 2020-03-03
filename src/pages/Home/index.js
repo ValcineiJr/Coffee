@@ -22,7 +22,7 @@ export default function Home({ navigation }) {
 
     navigation.setOptions({
         headerLeft: () => (
-            <TouchableWithoutFeedback onPress={addTable}>
+            <TouchableWithoutFeedback onPress={() => {alert("Abrir Menu")}}>
                 <Image  source={Menu} style={{marginLeft:10,width:24, height:24}} />
             </TouchableWithoutFeedback>            
           )
@@ -36,7 +36,7 @@ export default function Home({ navigation }) {
           <TablesView>
 
           {tables.map(table => (
-            <Table key={table.id} tableNumber={table.tableNumber} bgColor={table.tableColor} />
+            <Table navigation={navigation} key={table.id} tableNumber={table.tableNumber} bgColor={table.tableColor} />
           ))}
            
           </TablesView>          

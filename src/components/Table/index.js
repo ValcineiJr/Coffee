@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, TouchableWithoutFeedback } from 'react-native';
 
 import { 
   Container,
@@ -8,13 +8,20 @@ import {
   TableNumber
  } from './styles';
 
-export default function Table({bgColor, tableNumber}) {
+export default function Table({bgColor, tableNumber, navigation}) {
+
+  function openTable(wichTable){
+    navigation.navigate('Table', {id:tableNumber});
+  }
+
   return (
     <Container>
-      <TableContainer bgColor={bgColor}>   
-      <TableNumber>{tableNumber}</TableNumber>     
-        <TableFade />
-      </TableContainer>
+      <TouchableWithoutFeedback onPress={()=> {openTable(tableNumber)}}>
+        <TableContainer bgColor={bgColor}>   
+        <TableNumber>{tableNumber}</TableNumber>     
+          <TableFade />
+        </TableContainer>
+      </TouchableWithoutFeedback>
     </Container>
   );
 }
