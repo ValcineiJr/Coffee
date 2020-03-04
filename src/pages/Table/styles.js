@@ -11,6 +11,7 @@ export const ListItens = styled.ScrollView.attrs({
     },
 })`
   background: #fff;
+  min-height:84px;
 `;
 
 export const Filter = styled.View`
@@ -36,4 +37,13 @@ export const InputSearch = styled.TextInput`
 
 export const FilterButton = styled.TouchableWithoutFeedback`
   background: #ff0;
+`;
+export const ProductList = styled.ScrollView.attrs({
+  showsVerticalScrollIndicator:false,
+  contentContainerStyle:{
+    paddingBottom:180,
+    paddingTop:10
+  }
+})`
+  
 `;

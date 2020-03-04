@@ -6,7 +6,8 @@ import {
   ListItens,
   Filter,
   InputSearch,
-  FilterButton
+  FilterButton,
+  ProductList
 , } from './styles';
 import Notes from '../../assets/img/note.png'
 import coffee from '../../assets/img/coffee.jpg';
@@ -90,7 +91,14 @@ export default function Table({ navigation, route }) {
         </View>
       </Filter>
       <ProductList>
-
+          <Products productImage={coffee} />
+          <Products productImage={coffee} />
+          <Products productImage={coffee} />
+          <Products productImage={coffee} />
+          <Products productImage={coffee} />
+          <Products productImage={coffee} />
+          <Products productImage={coffee} />
+          <Products productImage={coffee} />
       </ProductList>
     </Container>
   );
