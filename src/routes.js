@@ -6,12 +6,21 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Home from './pages/Home';
 import Table from './pages/Table';
 
+import LoadingScreen from './pages/loading/'
 
-const Stack = createStackNavigator();
-const bgHeaderColor = "#EE2121";
-const txtHeaderColor = "#fff"
+const Stack = createStackNavigator()
+const bgHeaderColor = '#EE2121'
+const txtHeaderColor = '#fff'
 
 function App() {
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false)
+    }, 5000)
+  })
+
   return (
     <NavigationContainer>
       <Stack.Navigator
@@ -41,7 +50,7 @@ function App() {
       </Stack.Navigator>
 
     </NavigationContainer>
-  );
+  )
 }
 
-export default App;
+export default App
