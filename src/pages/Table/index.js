@@ -64,7 +64,7 @@ export default function Table({ navigation, route }) {
           <TouchableWithoutFeedback onPress={() => {alert("Abrir Menu")}}>
              <Image source={category.img} style={{marginLeft:15,width:31, height:31, borderRadius:15}} />
          </TouchableWithoutFeedback>
-         <View style={{width:50,height:26, marginLeft:5, alignItems:'center'}}>
+         <View style={{width:60,height:26, marginLeft:5, alignItems:'center'}}>
          <Text styyle={{fontSize:11, fontWeight: 'light', color: '#494545'}}>{category.nome}</Text> 
          </View>              
          </View>
