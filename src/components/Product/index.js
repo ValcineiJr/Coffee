@@ -47,7 +47,7 @@ export default function Product({ productImage }) {
             <Aside>          
                 <AddButton>
                     <ButtonView >
-                        <AddText>Adicionar</AddText>
+                        <AddText onPress={() => {alert("Dicionar produto")}}>Adicionar</AddText>
                     </ButtonView>                    
                     </AddButton>
             </Aside>
