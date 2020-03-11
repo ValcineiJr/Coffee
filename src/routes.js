@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useState, useEffect} from 'react'
 import { View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -6,7 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Home from './pages/Home';
 import Table from './pages/Table';
 
-import LoadingScreen from './pages/loading/'
+
 
 const Stack = createStackNavigator()
 const bgHeaderColor = '#EE2121'
